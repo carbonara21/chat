@@ -5,14 +5,16 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import time
 import threading
 import queue
+import pickle
 
 # Load trained model
 model = tf.keras.models.load_model("twitch_bilstm.keras")
 
 # Load tokenizer
-with open("tokenizer.json", "r") as file:
-    tokenizer = tokenizer_from_json(file.read())
+with open("tokenizer.pkl", "rb") as file:
+    tokenizer = pickle.load(file)
 
+# Load sequence length
 max_sequence_length = int(np.load("max_sequence_length.npy"))
 
 # Shared category and input handling
@@ -138,7 +140,7 @@ def main():
 
             message = generate_text(
                 category=category,
-                max_words=30,
+                max_words=5,
                 temperature=0.8
             )
 
