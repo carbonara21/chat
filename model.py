@@ -59,6 +59,6 @@ model.add(Dense(total_words, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(X, y, epochs=75, verbose=1, validation_split=0.1)
+model.fit(X, y, epochs=5, verbose=1, validation_split=0.1)
 
 model.save("twitch_bilstm.keras")
